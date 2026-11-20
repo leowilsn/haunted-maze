@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed: float = 100.0
+var speed: float = 110.0
 var is_hurt: bool = false
 signal health_changed(new_value: int)
 
