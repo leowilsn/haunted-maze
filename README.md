@@ -10,7 +10,7 @@ A spooky top-down maze: sneak past ghosts, bats and spiders, grab the coins and 
 
 ## Made with
 
-Godot 4.7
+Godot 4.7, at Ark Gamedev Academy
 
 ## Credits
 
