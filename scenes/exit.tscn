@@ -19,8 +19,9 @@ texture = ExtResource("2_door")
 shape = SubResource("RectangleShape2D_exit")
 
 [node name="DoorCreak" type="AudioStreamPlayer2D" parent="."]
-bus = &"SFX"
 stream = ExtResource("3_door")
+volume_db = -10.0
+bus = &"SFX"
 
 [node name="Jingle" type="AudioStreamPlayer" parent="."]
 bus = &"SFX"
