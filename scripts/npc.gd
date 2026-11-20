@@ -1,6 +1,6 @@
 extends Node2D
 
-var speed: float = 40.0
+var speed: float = 50.0
 var direction: float = 1.0   # 1 = right, -1 = left
 var start_x: float
 
