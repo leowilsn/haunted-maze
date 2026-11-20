@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://cxavmgsk03jyk"]
+
+[ext_resource type="Script" uid="uid://5j2q0c1q8lqj" path="res://scripts/bat.gd" id="1_bat"]
+[ext_resource type="Texture2D" uid="uid://dgyuhnme7u5xu" path="res://art/enemies/bat.png" id="2_bat"]
+
+[sub_resource type="Curve2D" id="Curve_bat"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 0)
+}
+point_count = 2
+
+[sub_resource type="AtlasTexture" id="At_0"]
+atlas = ExtResource("2_bat")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="At_1"]
+atlas = ExtResource("2_bat")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="At_2"]
+atlas = ExtResource("2_bat")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="At_3"]
+atlas = ExtResource("2_bat")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SF_bat"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("At_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("At_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("At_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("At_3")
+}],
+"loop": 1,
+"name": &"fly",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="Circle_bat"]
+radius = 32.0
+
+[sub_resource type="Animation" id="Anim_fly"]
+resource_name = "fly_path"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlightPath/Follower:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="Lib_bat"]
+_data = {
+&"fly_path": SubResource("Anim_fly")
+}
+
+[node name="Bat" type="Node2D" unique_id=18485670]
+script = ExtResource("1_bat")
+
+[node name="FlightPath" type="Path2D" parent="." unique_id=1524196922]
+curve = SubResource("Curve_bat")
+
+[node name="Follower" type="PathFollow2D" parent="FlightPath" unique_id=443234868]
+rotates = false
+loop = false
+
+[node name="Body" type="AnimatedSprite2D" parent="FlightPath/Follower" unique_id=538218922]
+sprite_frames = SubResource("SF_bat")
+animation = &"fly"
+autoplay = "fly"
+
+[node name="Sight" type="Area2D" parent="FlightPath/Follower" unique_id=254530689]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlightPath/Follower/Sight" unique_id=445486405]
+shape = SubResource("Circle_bat")
+
+[node name="Flight" type="AnimationPlayer" parent="." unique_id=1452087349]
+libraries/ = SubResource("Lib_bat")
+autoplay = &"fly_path"
+
+[connection signal="body_entered" from="FlightPath/Follower/Sight" to="." method="_on_sight_body_entered"]
+[connection signal="body_exited" from="FlightPath/Follower/Sight" to="." method="_on_sight_body_exited"]

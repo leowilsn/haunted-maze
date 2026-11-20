@@ -1,0 +1,18 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/heal_potion.gd" id="1_hp"]
+[ext_resource type="Texture2D" path="res://art/tiny_dungeon/Tiles/tile_0115.png" id="2_hp"]
+
+[sub_resource type="CircleShape2D" id="Circle_hp"]
+radius = 6.0
+
+[node name="HealPotion" type="Area2D"]
+script = ExtResource("1_hp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_hp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("Circle_hp")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

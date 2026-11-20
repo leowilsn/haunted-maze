@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dicfse64nc06q"]
+
+[ext_resource type="Texture2D" uid="uid://5cxydtxvni0m" path="res://art/tiny_dungeon/Tiles/tile_0041.png" id="1_5pg7g"]
+[ext_resource type="Script" uid="uid://br558mnhurwbq" path="res://scripts/spikes.gd" id="1_xbcdo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_38or4"]
+size = Vector2(16, 16)
+
+[node name="Spikes" type="Area2D" unique_id=853201883]
+script = ExtResource("1_xbcdo")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=843700200]
+texture = ExtResource("1_5pg7g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1801328408]
+shape = SubResource("RectangleShape2D_38or4")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

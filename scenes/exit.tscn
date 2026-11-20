@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dbe4rpoeuvrj8"]
+
+[ext_resource type="Script" uid="uid://beacmxvtduq44" path="res://scripts/exit.gd" id="1_exit"]
+[ext_resource type="Texture2D" uid="uid://dxv6jlhdqoi50" path="res://art/tiny_dungeon/Tiles/tile_0045.png" id="2_door"]
+
+[ext_resource type="AudioStream" uid="uid://cokarg627x1bw" path="res://sound/sfx/doorOpen_1.ogg" id="3_door"]
+[ext_resource type="AudioStream" uid="uid://45rdvuxf4352" path="res://sound/sfx/Success1.wav" id="4_jingle"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit"]
+size = Vector2(16, 16)
+
+[node name="Exit" type="Area2D" unique_id=1142317483]
+script = ExtResource("1_exit")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=786500531]
+texture = ExtResource("2_door")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1130322577]
+shape = SubResource("RectangleShape2D_exit")
+
+[node name="DoorCreak" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
+stream = ExtResource("3_door")
+
+[node name="Jingle" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+stream = ExtResource("4_jingle")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://c16s8qkddsitc"]
+
+[ext_resource type="PackedScene" uid="uid://b8m8pmbo46ge1" path="res://scenes/player.tscn" id="1_im37l"]
+[ext_resource type="PackedScene" uid="uid://cjwjrja1o83pl" path="res://scenes/npc.tscn" id="2_4adyp"]
+[ext_resource type="PackedScene" uid="uid://dicfse64nc06q" path="res://scenes/spikes.tscn" id="3_h8avn"]
+
+[node name="TestRoom" type="Node2D" unique_id=2095764897]
+
+[node name="Player" parent="." unique_id=1305246823 instance=ExtResource("1_im37l")]
+position = Vector2(240, 135)
+
+[node name="Npc" parent="." unique_id=1292016839 instance=ExtResource("2_4adyp")]
+position = Vector2(120, 200)
+
+[node name="Spikes" parent="." unique_id=853201883 instance=ExtResource("3_h8avn")]
+position = Vector2(200, 135)
+
+[node name="Spikes2" parent="." unique_id=1731415973 instance=ExtResource("3_h8avn")]
+position = Vector2(300, 135)
